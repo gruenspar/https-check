@@ -1,11 +1,13 @@
+ENV['SSL_CERT_FILE'] = File.expand_path('C:/Projects/Secutey/cacert.pem', __FILE__)
+
 require 'open-uri'
 
 # Input URL
-puts("URL eingeben (Beispiel: http://example.de):\n")
+puts("URL eingeben (Beispiel: https://www.example.de):\n")
 url = gets
 url = url.chomp
 
-check_result = true
+check_result = true	
 counter = 0
 
 # open URL and get source code
