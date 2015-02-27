@@ -6,6 +6,7 @@ def readFile
 	regex_list = [
 		/<script(.*)http:(.*)\.js/,
 		/<img (.*)http:(.*)/,
+		/<link href(.*)http:(.*)\.css/
 	]
 	
 	# Input URL
@@ -23,15 +24,13 @@ def readFile
 	open(url) do |source|
 		source.each_line do |line| 
 			counter = counter + 1
-			
-			for i in 0..regex_list.length
-				result = line.match(regex_list[i])
-			end
-			
-			unless result.nil?
-				check_result = false
-				puts counter
-				puts result
+			regex_list.each do |regex|
+				result = line.match regex
+				unless result.nil?
+					check_result = false
+					puts counter
+					puts result
+				end
 			end
 		end	
 	end
@@ -42,8 +41,8 @@ def readFile
 	else
 		# secure
 		puts "Not Found"
-	end
-end
+	end	
+end	
 
 # line.match(/<img (.*)http:(.*)/) or line.match(/<script(.*)http:(.*)\.js/) or line.match(/<link href(.*)http:(.*).css(.*)/)
 puts readFile
