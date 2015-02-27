@@ -10,17 +10,20 @@ url = url.chomp
 check_result = true	
 counter = 0
 
+# url = File.new("Quelltext.html", "r")
+
 # open URL and get source code
 # check if website opens resources with http://
 open(url) do |source|
 	source.each_line do |line| 
 		counter = counter + 1
-		result = line.match(/<img (.*)"http:(.*)/)
+		result = line.match(/<img (.*)http:(.*)/)
 		unless result.nil?
 			check_result = false
 			puts counter
+			puts result
 		end
-	end		
+	end	
 end
 
 if check_result == false
@@ -30,3 +33,5 @@ else
 	# secure
 	puts "Not Found"
 end
+
+# line.match(/<img (.*)http:(.*)/) or line.match(/<script(.*)http\:(.*)/) or line.match(/<link href(.*)http:(.*).css(.*)/)
