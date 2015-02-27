@@ -15,20 +15,16 @@ def readFile
 	url = url.chomp
 	
 	check_result = true	
-	counter = 0
-
-	# url = File.new("Quelltext.html", "r")
 
 	# open URL and get source code
 	# check if website opens resources with http://
 	open(url) do |source|
-		source.each_line do |line| 
-			counter = counter + 1
+		source.each_line.with_index do |line, index| 
 			regex_list.each do |regex|
 				result = line.match regex
 				unless result.nil?
 					check_result = false
-					puts counter
+					puts index + 1
 					puts result
 				end
 			end
@@ -44,5 +40,4 @@ def readFile
 	end	
 end	
 
-# line.match(/<img (.*)http:(.*)/) or line.match(/<script(.*)http:(.*)\.js/) or line.match(/<link href(.*)http:(.*).css(.*)/)
 puts readFile
