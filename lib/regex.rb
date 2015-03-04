@@ -19,13 +19,14 @@ def readFile
 	# open URL and get source code
 	# check if website opens resources with http://
 	open(url) do |source|
-		source.each_line.with_index do |line, index| 
+		source.each_line.with_index do |line, index|
+		    line_number = index + 1
+
 			regex_list.each do |regex|
 				result = line.match regex
 				unless result.nil?
 					check_result = false
-					puts index + 1
-					puts result
+					puts "L#{line_number}:  #{result}"
 				end
 			end
 		end	
@@ -33,10 +34,10 @@ def readFile
 
 	if check_result == false
 		# insecure
-		puts "Found. Line numbers above."	
+		puts "\nWARNING: #{url} contains insecure asset references."
 	else
 		# secure
-		puts "Not Found"
+		puts "\nOK"
 	end	
 end	
 
