@@ -1,4 +1,4 @@
-ENV['SSL_CERT_FILE'] = File.expand_path('C:/Projects/Secutey/cacert.pem', __FILE__)
+ENV['SSL_CERT_FILE'] = File.expand_path('../cert/cacert.pem', File.dirname(__FILE__))
 
 def readFile
 	require 'open-uri'
