@@ -1,3 +1,9 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/regex.rb'
+
+# Input URL
+puts("URL eingeben (Beispiel: https://www.example.de):\n")
+url = gets
+
+puts HttpsCheck.check url
