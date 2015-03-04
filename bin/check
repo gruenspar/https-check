@@ -2,8 +2,12 @@
 
 require_relative '../lib/regex.rb'
 
-# Input URL
-puts("URL eingeben (Beispiel: https://www.example.de):\n")
-url = gets
+if (ARGV.length < 1)
+    puts "Check for insecure assets on HTTPS delivered documents."
+    puts "Usage: bin/check <URL>"
+    exit
+else
+    url = ARGV.first
+end
 
 puts HttpsCheck.check url
